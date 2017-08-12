@@ -9,7 +9,7 @@ class DynamicArray:
         
 
     def make_array(self, c):
-        return (c * ctypes.py_object)
+        return (c * ctypes.py_object)()
 
     def __len__(self):
         return self.size
@@ -21,11 +21,11 @@ class DynamicArray:
             return self.array[i]
 
     def __str__(self):
-        array_string = self.array[0]
+        array_string = "[" + str(self.array[0])
         for i in range(1, self.size):
             array_string += ", " + str(self.array[i])
 
-        return array_string
+        return array_string + "]"
 
     def append(self, obj):
         if self.size == self.capacity:
@@ -33,6 +33,7 @@ class DynamicArray:
             for i in range(self.size):
                 temp_array[i] = self.array[i]
             self.array = temp_array
-            self.array[self.capacity] = obj
-            self.size += 1
+            self.capacity = 2 * self.capacity
+        self.array[self.size] = obj
+        self.size += 1
         

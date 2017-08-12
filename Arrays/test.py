@@ -6,6 +6,9 @@ def main():
     a1.append(2)
     a1.append(3)
 
+    print len(a1)
+
+    print a1[1]
     print a1
 
 
